@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="row" *ngIf="len==0">
+        <div class="col-md-3">
+            <h3>Cart is Empty!!!</h3><br>
+            <button class="btn btn-primary" (click)="onShop()">Show Now</button>
+        </div>    
+    </div>
+    <div class="row" *ngIf="len!=0">
+        <div class="col-md-6">
+            <div class="list-group" *ngFor="let cart of carts">
+                <div class="d-flex justify-content-between">
+                    <div class="list-group-item">
+                        <div>
+                            <img [src]="cart.productImageUrl" [alt]="cart.productName" style="width: 300px;height:200px;">
+                        </div>
+                        <a [routerLink]="['/cart',cart.cartItemID]">
+                            <h3>{{cart.productName}}</h3>
+                            <p>Price:{{cart.productPrice}}</p>
+                            <p>Quantity Available:{{cart.productQuantity}}</p>
+                        </a>
+                    </div>
+                </div>
+                <!-- <form #f="ngForm">
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" [(ngModel)]="quantity" #qua="ngModel" name="quantity" id="quantity" class="form-control" required>
+                    <p class="text-danger" *ngIf="qua.value>(cart.productQuantity)">Your Needed Quantity exceeds the Available Quantity</p>
+                </div>
+                <div *ngIf="qua.value<=(cart.productQuantity)">
+                    <button class="btn btn-primary" (click)="onSubmit(cart.productName)">OK</button>
+                </div>    
+            </form> -->
+            </div><br>
+            <button class="btn btn-primary" (click)="onMore()">Shop More!!!</button><br>
+            <!-- <h3 *ngIf="carts.length>0">Total:{{total}}</h3> -->
+        </div>
+        
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+    <div class="col-md-3">
+        <button class="btn btn-success">Order</button>
+    </div>
+    </div>
+    
+</div>

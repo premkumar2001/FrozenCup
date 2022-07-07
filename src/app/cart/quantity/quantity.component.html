@@ -1,0 +1,19 @@
+<div class="container mt-25">
+    <div class="row">
+        <form #f="ngForm">
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" [(ngModel)]="quantity" #qua="ngModel" name="quantity" id="quantity"
+                    class="form-control" required>
+                <p class="text-danger" *ngIf="qua.value>(cart.productQuantity)">Your Needed Quantity exceeds the
+                    Available Quantity</p>
+                <p class="text-success" *ngIf="avail!=null">Quantity Selected:{{avail}}</p>
+                <p class="text-danger" *ngIf="avail==null">Quantity Selected:0 (Enter Quantity to place Order)</p>
+                <p>Grand Total:{{total}}</p>
+            </div>
+            <div *ngIf="qua.value<=(cart.productQuantity)">
+                <button class="btn btn-primary" (click)="onSubmit(cart.productName)">OK</button>
+            </div>
+        </form>
+    </div>
+</div>

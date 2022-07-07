@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <form class="d-flex justify-content-center">
+        <input class="form-control" type="search" placeholder="Search" 
+         aria-label="Search" />
+        <button class="btn btn-success"  type="submit">Search</button>
+      </form><br>
+      <div class="row">
+    <ng-container *ngFor="let product of products">
+        
+        <div class="card shadow mt-2 mb-4 col-md-3" style="width: 300px;">
+                <img class="card-img-top" [src]="product.productImageUrl" [alt]="product.productName" style="width:300px; height :250px;">
+                <div class="card-body">
+                    <h3 class="card-title">{{product.productName}}</h3>
+                    <p class="card-text">Price:{{product.productPrice | currency:'INR'}}</p>
+                    <p class="card-text">Quantity:{{product.productQuantity}}</p>
+                    <p class="card-text">About:{{product.productDescription}}</p>
+                    <a class="btn btn-primary" *ngIf="product.productQuantity>0" (click)="onCart(product.productId)">Add to Cart</a>
+                </div>
+    </div>
+    </ng-container>
+      </div>
+</div>
